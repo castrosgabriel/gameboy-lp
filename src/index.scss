@@ -1,0 +1,57 @@
+* {
+  margin: unset;
+  padding: unset;
+  text-decoration: unset;
+  list-style: none;
+  box-sizing: border-box;
+  border: unset;
+  color: unset;
+}
+
+:root {
+  --nintendo-red: #E60012;
+  --background-light: #FBFAF0;
+  --black: #0A0A0A;
+  --background-gradient: linear-gradient(0deg, #FBFAF0 39.8%, #ECE3CC 100%);
+  --dark-nintendo-red: #AF0F1C;
+}
+
+h1 {
+  font-family: "Korolev Compressed", sans-serif;
+  font-size: 335.072px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: "Korolev Compressed";
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 110px;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+p b {
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+body {
+  background: var(--black);
+  // --scroll: -.3;
+}
