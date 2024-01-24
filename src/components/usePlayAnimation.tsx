@@ -5,14 +5,16 @@ import { useEffect } from "react";
 //So you need to tell your class to animate the variable by using the 'animation-name: var(--animation-name)' property.
 //And the animation you set need to have the same name as animationName prop when instantiating the hook.
 
-const usePlayAnimation = (elementRef: React.RefObject<HTMLElement>, animationName: string) => {
+const usePlayAnimation = (elementRef: React.RefObject<HTMLElement>, animationName: string, refOffset?: number) => {
     useEffect(() => {
       const handlePlayAnimation = () => {
         if (elementRef.current) {
           const elementYPosition = elementRef.current.getBoundingClientRect().bottom;
-          if (elementYPosition < window.scrollY) {
+          if ((elementYPosition + (refOffset ?? 0)) < window.scrollY) {
             document.body.style.setProperty(`--${animationName}`, animationName);
           }
+          console.log(`${animationName}`,elementYPosition);
+          console.log(`>>>>>>>>>>>>>>>>>>>>>>>`,window.scrollY);
         }
       };
   

@@ -38,18 +38,19 @@ const App = () => {
   };
 
   const animations = new Map([
-    [elementRef.unbreakableImg, 'unbreakableimg'],
-    [elementRef.anywherePocket, 'pocket'],
-    [elementRef.anywhere, 'game-pocket'],
-    [elementRef.anywhereTitle, 'h2-anywhere'],
-    [elementRef.anywhereUl, 'ul-anywhere'],
-    [elementRef.unbreakableText, 'unbreakabletext'],
-    [elementRef.unbreakableUl, 'ul-unbreakable']
+    [elementRef.anywherePocket, { animationName: 'pocket', refOffset: 250 }],
+    [elementRef.anywhere, { animationName: 'game-pocket', refOffset: 250}],
+    [elementRef.anywhereTitle, { animationName: 'h2-anywhere', refOffset: 650 }],
+    [elementRef.anywhereUl, { animationName: 'ul-anywhere', refOffset: 450 }],
+    [elementRef.unbreakableText, { animationName: 'unbreakabletext', refOffset: 2300 }],
+    [elementRef.unbreakableImg, { animationName: 'unbreakableimg', refOffset: 1800 }],
+    [elementRef.unbreakableUl, { animationName: 'ul-unbreakable', refOffset: 2000 }],
   ]);
 
-  animations.forEach((animationName, elementRef) => {
-    usePlayAnimation(elementRef, animationName);
+  animations.forEach((props, elementRef) => {
+    usePlayAnimation(elementRef, props.animationName, props.refOffset);
   });
+
 
   const scrollAnimation = new Map([
     [elementRef.feature, '--scroll'],
@@ -166,7 +167,7 @@ const App = () => {
       </div>
       <footer ref={footerElementRef}>
         <div className='footer-content'>
-          <h2>ENJOY A FULL NINTENDO <br/> EXPERIENCE IN YOUR POCKET</h2>
+          <h2>ENJOY A FULL NINTENDO <br /> EXPERIENCE IN YOUR POCKET</h2>
           <div className='footer-cta'>
             <p>From $149*</p>
             <MainButton>Order now</MainButton>

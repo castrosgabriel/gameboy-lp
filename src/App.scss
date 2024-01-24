@@ -326,9 +326,20 @@ li p {
   width: 100vw;
   height: fit-content;
   background-image: url('./assets/png/bg-catalog.png');
-  // background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   z-index: 2;
+  animation: bganimation 50s linear infinite;
+
+  @keyframes bganimation {
+    from{
+      background-position: 0% 0%;
+    }
+
+    to {
+      background-position: 1000% 0%;
+    }
+    
+  }
 
 }
 
@@ -395,7 +406,9 @@ li p {
   margin-top: 120px;
   color: var(--background-light);
   animation: var(--unbreakabletext) .4s cubic-bezier(1, 0.01, 0.84, 1.52) both;
-  animation-delay: 1.35s;
+  animation-delay: .8s;
+  opacity: 0;
+  transform: translateY(-120px);
 
 
   @keyframes unbreakabletext {
@@ -415,7 +428,7 @@ li p {
   }
 
   &:nth-child(1) {
-    animation-delay: 1.4s;
+    animation-delay: .9s;
   }
 }
 
@@ -429,9 +442,10 @@ li p {
 }
 
 .unbreakable-content img {
-  transform: rotate(40deg);
+  transform: translateY(-800px) rotate(0);
   animation: var(--unbreakableimg) 1s cubic-bezier(1, 0.01, 0.84, 1.52) both;
-  animation-delay: .6s;
+  animation-delay: 0s;
+  
 
   @keyframes unbreakableimg {
     0% {
@@ -453,7 +467,9 @@ li p {
   justify-content: center;
   align-items: center;
   animation: var(--ul-unbreakable) 1s ease-out both;
-  animation-delay: 2s;
+  animation-delay: 1s;
+  opacity: 0;
+  transform: translateY(0px);
 
   @keyframes ul-unbreakable {
     0% {
@@ -462,6 +478,7 @@ li p {
     }
 
     100% {
+      opacity: 1;
       transform: translateY(-12px);
     }
 
