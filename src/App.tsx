@@ -23,8 +23,6 @@ import usePlayAnimation from './components/usePlayAnimation'
 
 const App = () => {
 
-  const footerElementRef = useRef(null);
-
   const elementRef = {
     anywhere: useRef(null),
     anywhereTitle: useRef(null),
@@ -165,7 +163,7 @@ const App = () => {
           <MainButton>Order now</MainButton>
         </ul>
       </div>
-      <footer ref={footerElementRef}>
+      <footer>
         <div className='footer-content'>
           <h2>ENJOY A FULL NINTENDO <br /> EXPERIENCE IN YOUR POCKET</h2>
           <div className='footer-cta'>
