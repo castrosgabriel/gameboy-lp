@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/qfp5wei.css");
+
 * {
   margin: unset;
   padding: unset;
@@ -17,7 +19,7 @@
 }
 
 h1 {
-  font-family: "Korolev Compressed", sans-serif;
+  font-family: "korolev-compressed", sans-serif;
   font-size: 335.072px;
   font-style: normal;
   font-weight: 900;
@@ -26,7 +28,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Korolev Compressed";
+  font-family: "korolev-compressed", sans-serif;
   font-size: 100px;
   font-style: normal;
   font-weight: 900;
@@ -35,7 +37,7 @@ h2 {
 }
 
 p {
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -44,7 +46,7 @@ p {
 
 p b {
   text-align: center;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -53,5 +55,4 @@ p b {
 
 body {
   background: var(--black);
-  // --scroll: -.3;
 }

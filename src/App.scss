@@ -110,12 +110,13 @@ main .lettering {
   width: 100%;
 }
 
-li {
+.features li {
   display: flex;
   flex-direction: column;
   width: min-content;
   gap: 24px;
   animation: transition .8s ease-in-out both;
+  // animation-name: var(--ul-anywhere);
   animation-play-state: paused;
 
   @keyframes transition {
@@ -174,7 +175,8 @@ li p {
 .anywhere-container .image-pocket {
   position: absolute;
   width: 400px;
-  animation: game-pocket 2s ease-in-out forwards;
+  animation: 2s ease-in-out forwards;
+  animation-name: var(--game-pocket);
   transform: translateX(calc(50vw - 200px)) translateY(calc(50vh - 340px));
   animation-delay: .8s;
   z-index: 0;
@@ -184,7 +186,7 @@ li p {
       transform: translateX(calc(50vw - 200px)) translateY(calc(50vh - 340px));
     }
 
-    50%{
+    50% {
       transform: translateX(calc(50vw - 200px)) translateY(calc(50vh - 400px));
       width: 400px;
     }
@@ -198,10 +200,13 @@ li p {
 
 .anywhere-container .image-pocket-over {
   position: absolute;
-  transform: translateX(calc(50vw - 220px)) translateY(calc(50vh - 100px));
   z-index: 1;
-  animation: pocket 1s ease-in-out forwards;
-  animation-delay: .8s;
+  animation-name: var(--pocket);
+  animation-duration: 1s;
+  animation-delay: 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform: translateX(calc(50vw - 220px)) translateY(calc(50vh - 100px));
 
   @keyframes pocket {
     from {
@@ -227,15 +232,18 @@ li p {
 
 .anywhere-content h2 {
   color: var(--background-light);
-  animation: animation-title .5s ease-in-out both;
+  animation: .5s ease-in-out forwards;
+  animation-name: var(--h2-anywhere);
   animation-delay: 2.6s;
-  
+  opacity: 0;
+  transform: translateY(32px);
 
-  @keyframes animation-title {
+  @keyframes h2-anywhere {
     from {
       opacity: 0;
       transform: translateY(32px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0px);
@@ -254,14 +262,18 @@ li p {
     flex-direction: column;
     width: min-content;
     gap: 24px;
-    animation: animation-anywhere .5s ease-in-out both;
+    animation: .5s ease-in-out both;
+    animation-name: var(--ul-anywhere);
+    opacity: 0;
+    transform: translateY(32px);
 
 
-    @keyframes animation-anywhere {
+    @keyframes ul-anywhere {
       from {
         opacity: 0;
         transform: translateY(32px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0px);
@@ -317,6 +329,35 @@ li p {
   // background-repeat: no-repeat;
   background-size: cover;
   z-index: 2;
+
+}
+
+.catalog-content,
+.catalog-container .main-button {
+  animation: flow .3s ease-in-out both;
+  animation-play-state: paused;
+
+  @keyframes flow {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(120px);
+    }
+  }
+
+  &:nth-child(1) {
+    animation-delay: calc((var(--catalog) * -1s) + .2s);
+  }
+
+  &:nth-child(2) {
+    animation-delay: calc((var(--catalog) * -1s) + .1s);
+  }
+
+
 }
 
 .catalog-content {
@@ -325,6 +366,7 @@ li p {
   gap: 32px;
   justify-content: flex-start;
   align-items: center;
+
 }
 
 .catalog-content p {
@@ -352,6 +394,29 @@ li p {
 .unbreakable-content h1 {
   margin-top: 120px;
   color: var(--background-light);
+  animation: var(--unbreakabletext) .4s cubic-bezier(1, 0.01, 0.84, 1.52) both;
+  animation-delay: 1.35s;
+
+
+  @keyframes unbreakabletext {
+    0% {
+      opacity: 0;
+      transform: translateY(-120px);
+    }
+
+    50%{
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  &:nth-child(1) {
+    animation-delay: 1.4s;
+  }
 }
 
 .unbreakable-content .unbr {
@@ -364,7 +429,19 @@ li p {
 }
 
 .unbreakable-content img {
-  rotate: 40deg;
+  transform: rotate(40deg);
+  animation: var(--unbreakableimg) 1s cubic-bezier(1, 0.01, 0.84, 1.52) both;
+  animation-delay: .6s;
+
+  @keyframes unbreakableimg {
+    0% {
+      transform: translateY(-800px) rotate(0);
+    }
+
+    100% {
+      transform: rotate(40deg);
+    }
+  }
 }
 
 .unbreakable-container ul {
@@ -375,6 +452,20 @@ li p {
   padding: 64px;
   justify-content: center;
   align-items: center;
+  animation: var(--ul-unbreakable) 1s ease-out both;
+  animation-delay: 2s;
+
+  @keyframes ul-unbreakable {
+    0% {
+      opacity: 0;
+      transform: translateY(0px);
+    }
+
+    100% {
+      transform: translateY(-12px);
+    }
+
+  }
 
   li {
     display: flex;

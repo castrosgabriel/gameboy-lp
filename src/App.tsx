@@ -13,34 +13,52 @@ import {
   PngDpad,
   PngPhone,
   PngVolume,
-  PngGameboyPocket,
   PngGameboyCartridge,
   PngGameboyAnima
 } from './assets'
 import MainButton from './components/MainButton'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
+import useScrollAnimation from './components/useScrollAnimation'
+import usePlayAnimation from './components/usePlayAnimation'
 
 const App = () => {
 
-  const featureElementRef = useRef(null);
+  const footerElementRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (featureElementRef.current) {
-        const elementYPosition = (featureElementRef.current as HTMLElement).getBoundingClientRect().bottom;
-        document.body.style.setProperty( 
-          "--scroll",
-          ((elementYPosition - (window.innerHeight * 0.65)) / window.scrollY).toString()
-        );
-      }
-    };
+  const elementRef = {
+    anywhere: useRef(null),
+    anywhereTitle: useRef(null),
+    anywhereUl: useRef(null),
+    anywherePocket: useRef(null),
+    feature: useRef(null),
+    catalog: useRef(null),
+    unbreakableImg: useRef(null),
+    unbreakableText: useRef(null),
+    unbreakableUl: useRef(null)
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    console.log('scrolling')
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const animations = new Map([
+    [elementRef.unbreakableImg, 'unbreakableimg'],
+    [elementRef.anywherePocket, 'pocket'],
+    [elementRef.anywhere, 'game-pocket'],
+    [elementRef.anywhereTitle, 'h2-anywhere'],
+    [elementRef.anywhereUl, 'ul-anywhere'],
+    [elementRef.unbreakableText, 'unbreakabletext'],
+    [elementRef.unbreakableUl, 'ul-unbreakable']
+  ]);
+
+  animations.forEach((animationName, elementRef) => {
+    usePlayAnimation(elementRef, animationName);
+  });
+
+  const scrollAnimation = new Map([
+    [elementRef.feature, '--scroll'],
+    [elementRef.catalog, '--catalog'],
+  ]);
+
+  scrollAnimation.forEach((propertyName, elementRef) => {
+    useScrollAnimation(elementRef, propertyName);
+  });
 
 
   return (
@@ -63,7 +81,7 @@ const App = () => {
           </div>
         </main>
       </div>
-      <div className='features' ref={featureElementRef} id='features'>
+      <div className='features' ref={elementRef.feature} id='features'>
         <h2>PLAY PORTABLE WITH COMFORT</h2>
         <ul className='features-ul'>
           <li>
@@ -84,12 +102,12 @@ const App = () => {
           </li>
         </ul>
       </div>
-      <div className='anywhere-container'>
-        <img className='image-pocket-over' src={SvgPocket} alt='pocket' />
-        <img className='image-pocket'src={PngGameboyAnima} alt='gameboy pocket' />
-        <div className='anywhere-content'>
-          <h2>PLAY ANYWHERE</h2>
-          <ul>
+      <div className='anywhere-container' id='anywhere'>
+        <img className='image-pocket-over' ref={elementRef.anywherePocket} src={SvgPocket} alt='pocket' />
+        <img className='image-pocket' ref={elementRef.anywhere} src={PngGameboyAnima} alt='gameboy pocket' />
+        <div className='anywhere-content' >
+          <h2 ref={elementRef.anywhereTitle}>PLAY ANYWHERE</h2>
+          <ul ref={elementRef.anywhereUl}>
             <li>
               <img src={SvgSize} alt='size' />
               <p>3 inches</p>
@@ -109,22 +127,24 @@ const App = () => {
           </ul>
         </div>
       </div>
-      <div className='catalog-container'>
+      <div className='catalog-container' ref={elementRef.catalog}>
         <div className='catalog-content'>
           <div className='spacer' />
           <h2>The amazing <br /> Nintendo catalog</h2>
           <p>With more than 200 games, you will never get bored</p>
         </div>
-        <MainButton> Check all games</MainButton>
+        <div className='main-button'>
+          <MainButton> Check all games</MainButton>
+        </div>
         <img src={PngGameboyCartridge} alt='gameboy cartridge' />
       </div>
-      <div className='unbreakable-container'>
+      <div className='unbreakable-container' ref={elementRef.unbreakableImg}>
         <div className='unbreakable-content'>
-          <h1 className='unbr'>Unbr</h1>
+          <h1 ref={elementRef.unbreakableText} className='unbr'>Unbr</h1>
           <img src={PngGameboyMain} alt='gameboy' />
           <h1 className='eakable'>eakable</h1>
         </div>
-        <ul>
+        <ul ref={elementRef.unbreakableUl}>
           <li>
             <div className='spacer' />
             <p>Built Tough for Lasting Play.</p>
@@ -144,9 +164,9 @@ const App = () => {
           <MainButton>Order now</MainButton>
         </ul>
       </div>
-      <footer>
+      <footer ref={footerElementRef}>
         <div className='footer-content'>
-          <h2>ENJOY A FULL NINTENDO EXPERIENCE IN YOUR POCKET</h2>
+          <h2>ENJOY A FULL NINTENDO <br/> EXPERIENCE IN YOUR POCKET</h2>
           <div className='footer-cta'>
             <p>From $149*</p>
             <MainButton>Order now</MainButton>
