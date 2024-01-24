@@ -23,6 +23,8 @@ import usePlayAnimation from './components/usePlayAnimation'
 
 const App = () => {
 
+  //this are the elements that will be animated
+
   const elementRef = {
     anywhere: useRef(null),
     anywhereTitle: useRef(null),
@@ -35,7 +37,9 @@ const App = () => {
     unbreakableUl: useRef(null)
   };
 
-  const animations = new Map([
+  //this are the animations that will be played, I did it using a Map to don't replicate the function call
+
+  const playAnimation = new Map([
     [elementRef.anywherePocket, { animationName: 'pocket', refOffset: 250 }],
     [elementRef.anywhere, { animationName: 'game-pocket', refOffset: 250}],
     [elementRef.anywhereTitle, { animationName: 'h2-anywhere', refOffset: 650 }],
@@ -45,10 +49,9 @@ const App = () => {
     [elementRef.unbreakableUl, { animationName: 'ul-unbreakable', refOffset: 2000 }],
   ]);
 
-  animations.forEach((props, elementRef) => {
+  playAnimation.forEach((props, elementRef) => {
     usePlayAnimation(elementRef, props.animationName, props.refOffset);
   });
-
 
   const scrollAnimation = new Map([
     [elementRef.feature, '--scroll'],

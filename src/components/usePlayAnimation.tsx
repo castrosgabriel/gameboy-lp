@@ -13,8 +13,6 @@ const usePlayAnimation = (elementRef: React.RefObject<HTMLElement>, animationNam
           if ((elementYPosition + (refOffset ?? 0)) < window.scrollY) {
             document.body.style.setProperty(`--${animationName}`, animationName);
           }
-          console.log(`${animationName}`,elementYPosition);
-          console.log(`>>>>>>>>>>>>>>>>>>>>>>>`,window.scrollY);
         }
       };
   
