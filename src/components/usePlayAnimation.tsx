@@ -21,7 +21,7 @@ const usePlayAnimation = (elementRef: React.RefObject<HTMLElement>, animationNam
       return () => {
         window.removeEventListener('scroll', handlePlayAnimation);
       };
-    }, [elementRef, animationName]);
+    }, [elementRef, animationName, refOffset]);
   };
   
   export default usePlayAnimation;
